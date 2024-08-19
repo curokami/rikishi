@@ -27,12 +27,15 @@ print('片男波で練習している力士は誰ですか?')
 df_Kataonami= df[df['Heya'] == 'Kataonami']
 
 #df_Kataonamiからに所属する力士の名前を取り出す。
+df_member_kataonami = df_Kataonami['Rikishi'].unique()
 
-df_meuber_kataonami = df_Kataonami['Rikishi'].unique()
-print(df_meuber_kataonami.shape)
+#力士の数を確認。
+#print(df_member_kataonami.shape)
 
+#力士名を変数に格納し、それを順ばんに表示する。
+#力士名を数える変数に０を設定。
 rikishi_count = 0
-for i in df_meuber_kataonami:
+for i in df_member_kataonami:
     rikishi_count += 1
     print(i)
     
