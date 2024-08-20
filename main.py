@@ -39,10 +39,26 @@ for i in df_member_kataonami:
     rikishi_count += 1
     print(i)
     
-print(f"片男波所属の力士は上記の{rikishi_count}にんです。")    
+print(f"片男波所属の力士は上記の{rikishi_count}にんです。") 
+
+# 勝率の計算
+df['wins_t'] = df['wins'] + df['ties']
+df['total_matches'] = df['wins'] + df['losses'] + df['ties']
+df['win_rate'] = df['wins_t'] / df['total_matches']
 
 
+# 休んでいる力士を除外する条件
+condition = df['ties'] != 15
 
+# 条件を満たす行のみを抽出
+df_active = df[condition]
+
+# 勝率順に並べ替える
+df_sorted = df_active.sort_values(by='win_rate', ascending=False)
+
+# 上位25名を表示
+top25 = df_sorted.head(25)
+print(top25[['Rikishi', 'win_rate', 'wins', 'losses', 'ties', 'total_matches']])
 
 
 
